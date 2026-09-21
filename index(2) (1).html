@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tahanan Spotlight | RestoEnLigne</title>
+  <meta name="description" content="Découvrez Tahanan à Sept-Îles : cuisine philippine, histoire de famille et hospitalité." />
+  <style>
+    :root{
+      --purple:#652D90;
+      --purple-dark:#4f1f73;
+      --orange:#F05A28;
+      --ink:#201a26;
+      --muted:#6d6671;
+      --paper:#fffaf6;
+      --white:#fff;
+      --line:#eadfe8;
+      --soft:#f5edf8;
+      --green:#2e7d52;
+      --shadow:0 20px 50px rgba(57,33,67,.12);
+      --radius:24px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.6;
+    }
+    img{max-width:100%;display:block}
+    a{text-decoration:none;color:inherit}
+    .wrap{width:min(1160px,calc(100% - 32px));margin:auto}
+    .topbar{
+      position:sticky;top:0;z-index:40;
+      background:rgba(255,250,246,.94);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid rgba(101,45,144,.12)
+    }
+    .nav{height:72px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-weight:900;letter-spacing:-.03em;color:var(--purple);font-size:1.15rem}
+    .nav-actions{display:flex;gap:10px;align-items:center}
+    .lang{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 13px;font-weight:800;cursor:pointer}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      border:none;border-radius:999px;padding:14px 20px;font-weight:900;cursor:pointer;
+      transition:.2s transform,.2s box-shadow;
+    }
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--orange);color:#fff;box-shadow:0 12px 26px rgba(240,90,40,.22)}
+    .btn-secondary{background:var(--purple);color:#fff}
+    .hero{padding:56px 0 36px}
+    .hero-grid{display:grid;grid-template-columns:1.03fr .97fr;gap:42px;align-items:center}
+    .eyebrow{display:inline-flex;gap:8px;align-items:center;font-weight:900;color:var(--purple);text-transform:uppercase;letter-spacing:.08em;font-size:.82rem}
+    h1,h2,h3{line-height:1.08;letter-spacing:-.04em;margin:0 0 16px}
+    h1{font-size:clamp(2.6rem,6vw,5.1rem)}
+    h2{font-size:clamp(2rem,4vw,3.5rem)}
+    h3{font-size:1.35rem}
+    .lead{font-size:1.18rem;color:#4f4652;max-width:680px}
+    .hero-meta{margin-top:16px;color:var(--muted);font-weight:700}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+    .placeholder{
+      min-height:460px;border-radius:34px;
+      border:2px dashed #cdb9d8;background:linear-gradient(135deg,#f9f3fb,#fff7f1);
+      display:flex;align-items:center;justify-content:center;text-align:center;padding:28px;
+      color:#796780;font-weight:800;box-shadow:var(--shadow)
+    }
+    .placeholder small{display:block;font-weight:600;color:#9c8aa4;margin-top:6px}
+    .quote-card{
+      margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:18px 20px;font-weight:800;color:var(--purple)
+    }
+    .story{padding:54px 0}
+    .section-head{max-width:780px;margin-bottom:28px}
+    .kicker{color:var(--orange);font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:.82rem;margin-bottom:10px}
+    .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+    .story-grid.reverse .visual{order:2}
+    .story-grid.reverse .copy{order:1}
+    .visual{min-height:360px}
+    .copy{padding:14px}
+    .num{font-weight:950;color:var(--purple);font-size:3rem;opacity:.18;line-height:1;margin-bottom:8px}
+    .copy p{color:#514a54;font-size:1.04rem}
+    .highlight{
+      background:var(--purple);color:#fff;border-radius:30px;padding:34px;margin:40px 0;
+      display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center
+    }
+    .highlight h2,.highlight p{color:#fff}
+    .highlight p{margin:0;opacity:.88}
+    .food-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:24px}
+    .food-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:0 12px 28px rgba(41,27,46,.06)}
+    .food-card .ph{height:170px;border-radius:16px;border:2px dashed #d8c7df;display:grid;place-items:center;color:#8a788f;background:#fbf6fc;font-weight:800;margin-bottom:14px}
+    .offer-band{padding:64px 0;background:#22142b;color:#fff;margin-top:48px}
+    .offer-band .section-head p{color:#d6cdd9}
+    .offer-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .offer-card{background:#fff;color:var(--ink);border-radius:26px;padding:26px}
+    .price{font-size:2.35rem;font-weight:950;color:var(--purple);letter-spacing:-.05em}
+    .old{text-decoration:line-through;color:#938a97;font-size:1rem;margin-right:8px}
+    .save{display:inline-block;margin-top:8px;background:#edf8f0;color:var(--green);padding:6px 10px;border-radius:999px;font-weight:900;font-size:.83rem}
+    .offer-card ul{padding-left:18px}
+    .unlock{margin-top:26px;text-align:center}
+    .location-card{margin-top:18px;background:#fff;border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:20px;color:#fff;background:rgba(255,255,255,.07)}
+    .teaser{padding:68px 0;text-align:center}
+    .teaser .box{background:#fff;border:1px solid var(--line);border-radius:28px;padding:44px;box-shadow:var(--shadow)}
+    footer{padding:34px 0;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+    .modal{
+      position:fixed;inset:0;background:rgba(22,10,28,.68);display:none;align-items:center;justify-content:center;padding:20px;z-index:80
+    }
+    .modal.open{display:flex}
+    .modal-card{width:min(760px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:28px;padding:28px;position:relative}
+    .close{position:absolute;right:18px;top:16px;border:0;background:#f0e8f2;border-radius:999px;width:38px;height:38px;font-size:22px;cursor:pointer}
+    .code-box{border:2px dashed var(--purple);background:#faf6fc;border-radius:18px;padding:22px;text-align:center;margin:18px 0}
+    .code{font-size:2rem;font-weight:950;color:var(--purple);letter-spacing:.12em}
+    .note{font-size:.92rem;color:var(--muted)}
+    @media (max-width:820px){
+      .hero-grid,.story-grid,.offer-grid{grid-template-columns:1fr}
+      .story-grid.reverse .visual,.story-grid.reverse .copy{order:initial}
+      .food-grid{grid-template-columns:1fr}
+      .highlight{grid-template-columns:1fr}
+      .placeholder{min-height:320px}
+      .nav .brand{font-size:1rem}
+      .nav .btn{padding:11px 14px;font-size:.9rem}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <div class="brand">RestoEnLigne <span style="color:#aaa;font-weight:700">×</span> Tahanan</div>
+      <div class="nav-actions">
+        <button class="lang" id="langBtn" onclick="toggleLang()">EN</button>
+        <button class="btn btn-primary" onclick="openOffers()" data-fr="Voir l’offre Spotlight" data-en="View Spotlight offer">Voir l’offre Spotlight</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow" data-fr="SPOTLIGHT × Tahanan" data-en="SPOTLIGHT × Tahanan">SPOTLIGHT × Tahanan</div>
+          <h1 data-fr="Une maison philippine au cœur de Sept-Îles." data-en="A Filipino home in the heart of Sept-Îles.">Une maison philippine au cœur de Sept-Îles.</h1>
+          <p class="lead" data-fr="À Tahanan, tu ne viens pas seulement manger. Tu découvres une cuisine encore rare à Sept-Îles : la cuisine philippine, racontée à travers les recettes, la famille et l’hospitalité de Christopher."
+             data-en="At Tahanan, you don’t just come in for a meal. You discover something still rare in Sept-Îles: Filipino cuisine, told through Christopher’s recipes, family and hospitality.">
+            À Tahanan, tu ne viens pas seulement manger. Tu découvres une cuisine encore rare à Sept-Îles : la cuisine philippine, racontée à travers les recettes, la famille et l’hospitalité de Christopher.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" onclick="openOffers()" data-fr="✦ Découvrir l’offre Spotlight" data-en="✦ Discover the Spotlight offer">✦ Découvrir l’offre Spotlight</button>
+          </div>
+          <div class="hero-meta" data-fr="Disponible du 1er octobre au 31 décembre 2026." data-en="Available October 1 through December 31, 2026.">Disponible du 1er octobre au 31 décembre 2026.</div>
+          <div class="quote-card" data-fr="« Tahanan », pour Christopher, veut dire maison." data-en="For Christopher, “Tahanan” means home.">« Tahanan », pour Christopher, veut dire maison.</div>
+        </div>
+        <div class="placeholder">
+          <div>PHOTO HERO — PLACEHOLDER<small>Christopher + Tahanan / restaurant exterior</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="story">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" data-fr="Portrait de restaurateur" data-en="Restaurant owner portrait">Portrait de restaurateur</div>
+          <h2 data-fr="Christopher de Tahanan" data-en="Christopher of Tahanan">Christopher de Tahanan</h2>
+          <p data-fr="Des Philippines à Sept-Îles, Christopher a transformé une passion transmise par sa mère en une table où les traditions philippines rencontrent la communauté locale."
+             data-en="From the Philippines to Sept-Îles, Christopher turned a passion passed down by his mother into a table where Filipino traditions meet the local community.">
+            Des Philippines à Sept-Îles, Christopher a transformé une passion transmise par sa mère en une table où les traditions philippines rencontrent la communauté locale.
+          </p>
+        </div>
+
+        <div class="story-grid">
+          <div class="visual placeholder"><div>PHOTO — PLACEHOLDER<small>Aling Nena Store / family photo / Philippines</small></div></div>
+          <div class="copy">
+            <div class="num">01</div>
+            <h2 data-fr="Tout commence aux Philippines." data-en="It all starts in the Philippines.">Tout commence aux Philippines.</h2>
+            <p data-fr="Bien avant Tahanan, il y avait Aling Nena Store, le commerce de la mère de Christopher à Pasay City. Enfant, il l’aide derrière les fourneaux et apprend à cuisiner dans un endroit qui nourrit des clients presque jour et nuit."
+               data-en="Long before Tahanan, there was Aling Nena Store, Christopher’s mother’s business in Pasay City. As a child, he helped her in the kitchen and learned to cook in a place that served customers almost around the clock.">
+              Bien avant Tahanan, il y avait Aling Nena Store, le commerce de la mère de Christopher à Pasay City. Enfant, il l’aide derrière les fourneaux et apprend à cuisiner dans un endroit qui nourrit des clients presque jour et nuit.
+            </p>
+            <p><strong data-fr="C’est là que naît sa passion pour la cuisine — et cette façon très familiale de prendre soin des gens par la nourriture."
+                       data-en="That’s where his love of cooking began — along with a deeply family-centred way of caring for people through food.">
+              C’est là que naît sa passion pour la cuisine — et cette façon très familiale de prendre soin des gens par la nourriture.
+            </strong></p>
+          </div>
+        </div>
+
+        <div class="highlight">
+          <div>
+            <div class="kicker" style="color:#ffb08f" data-fr="La cuisine philippine à Sept-Îles" data-en="Filipino cuisine in Sept-Îles">La cuisine philippine à Sept-Îles</div>
+            <h2 data-fr="Une cuisine encore rare ici. Une histoire profondément personnelle."
+                data-en="A cuisine still rare here. A deeply personal story.">Une cuisine encore rare ici. Une histoire profondément personnelle.</h2>
+            <p data-fr="Adobo, pancit, sinigang, molo soup, lumpia… Tahanan donne à Sept-Îles une porte d’entrée vers les saveurs et les traditions des Philippines."
+               data-en="Adobo, pancit, sinigang, molo soup, lumpia… Tahanan gives Sept-Îles a doorway into the flavours and traditions of the Philippines.">
+              Adobo, pancit, sinigang, molo soup, lumpia… Tahanan donne à Sept-Îles une porte d’entrée vers les saveurs et les traditions des Philippines.
+            </p>
+          </div>
+          <button class="btn btn-primary" onclick="openOffers()" data-fr="Voir l’offre" data-en="View offer">Voir l’offre</button>
+        </div>
+
+        <div class="story-grid reverse">
+          <div class="visual placeholder"><div>PHOTO — PLACEHOLDER<small>Christopher arriving in Canada / Sept-Îles / early years</small></div></div>
+          <div class="copy">
+            <div class="num">02</div>
+            <h2 data-fr="De Pasay City à Sept-Îles." data-en="From Pasay City to Sept-Îles.">De Pasay City à Sept-Îles.</h2>
+            <p data-fr="Christopher entreprend ses démarches pour venir au Canada en 2008. Il attend près de cinq ans. À son arrivée en 2013, le français est encore nouveau pour lui. Il commence chez A&W et construit peu à peu sa vie à Sept-Îles."
+               data-en="Christopher began the process of coming to Canada in 2008. He waited nearly five years. When he arrived in 2013, French was still new to him. He started at A&W and slowly built his life in Sept-Îles.">
+              Christopher entreprend ses démarches pour venir au Canada en 2008. Il attend près de cinq ans. À son arrivée en 2013, le français est encore nouveau pour lui. Il commence chez A&W et construit peu à peu sa vie à Sept-Îles.
+            </p>
+            <p data-fr="Ingénieur maritime de formation, il poursuit aussi une carrière dans le secteur maritime. Mais la cuisine ne le quitte jamais."
+               data-en="A marine engineer by training, he also continued a career in the maritime sector. But cooking never left him.">
+              Ingénieur maritime de formation, il poursuit aussi une carrière dans le secteur maritime. Mais la cuisine ne le quitte jamais.
+            </p>
+          </div>
+        </div>
+
+        <div class="story-grid" style="margin-top:34px">
+          <div class="visual placeholder"><div>PHOTO — PLACEHOLDER<small>Christopher + wife + daughters / Tahanan interior</small></div></div>
+          <div class="copy">
+            <div class="num">03</div>
+            <h2 data-fr="Puis Tahanan devient sa deuxième maison." data-en="Then Tahanan became his second home.">Puis Tahanan devient sa deuxième maison.</h2>
+            <p data-fr="En 2023, une occasion inattendue se présente. Christopher découvre un restaurant fermé, en parle avec sa femme et décide de se lancer."
+               data-en="In 2023, an unexpected opportunity appeared. Christopher came across a closed restaurant, talked it over with his wife and decided to take the leap.">
+              En 2023, une occasion inattendue se présente. Christopher découvre un restaurant fermé, en parle avec sa femme et décide de se lancer.
+            </p>
+            <p data-fr="Sa femme participe à l’aventure. Ses filles aussi. Même certains plats portent leurs noms. Ici, la famille n’est pas seulement une valeur : elle fait partie du restaurant."
+               data-en="His wife is part of the journey. His daughters are too. Even some dishes carry their names. Here, family isn’t just a value — it is part of the restaurant.">
+              Sa femme participe à l’aventure. Ses filles aussi. Même certains plats portent leurs noms. Ici, la famille n’est pas seulement une valeur : elle fait partie du restaurant.
+            </p>
+          </div>
+        </div>
+
+        <div class="section-head" style="margin-top:60px">
+          <div class="kicker" data-fr="À goûter chez Tahanan" data-en="Taste at Tahanan">À goûter chez Tahanan</div>
+          <h2 data-fr="Des plats qui racontent les Philippines." data-en="Dishes that tell the story of the Philippines.">Des plats qui racontent les Philippines.</h2>
+        </div>
+
+        <div class="food-grid">
+          <div class="food-card">
+            <div class="ph">PHOTO PANCIT</div>
+            <h3>Pancit / Ashie Nouilles Canton</h3>
+            <p data-fr="Le pancit occupe une place spéciale : c’est le premier plat que Christopher se souvient avoir appris de sa mère. Aujourd’hui, il fait partie des spécialités appréciées chez Tahanan."
+               data-en="Pancit has a special place in Christopher’s story: it is the first dish he remembers learning from his mother. Today, it is one of Tahanan’s popular specialties.">
+              Le pancit occupe une place spéciale : c’est le premier plat que Christopher se souvient avoir appris de sa mère. Aujourd’hui, il fait partie des spécialités appréciées chez Tahanan.
+            </p>
+          </div>
+          <div class="food-card">
+            <div class="ph">PHOTO SINIGANG</div>
+            <h3>Sinigang</h3>
+            <p data-fr="Une soupe acidulée et réconfortante, profondément liée à la cuisine familiale philippine."
+               data-en="A sour, comforting soup deeply connected to Filipino home cooking.">
+              Une soupe acidulée et réconfortante, profondément liée à la cuisine familiale philippine.
+            </p>
+          </div>
+          <div class="food-card">
+            <div class="ph">PHOTO MOLO SOUP</div>
+            <h3>Molo Soup</h3>
+            <p data-fr="L’un des plats que Christopher aime faire découvrir aux nouveaux clients — une introduction chaleureuse aux saveurs philippines."
+               data-en="One of the dishes Christopher likes to introduce to first-time guests — a warm introduction to Filipino flavours.">
+              L’un des plats que Christopher aime faire découvrir aux nouveaux clients — une introduction chaleureuse aux saveurs philippines.
+            </p>
+          </div>
+        </div>
+
+        <div class="story-grid reverse" style="margin-top:54px">
+          <div class="visual placeholder"><div>PHOTO — PLACEHOLDER<small>Biker event / local community / customers</small></div></div>
+          <div class="copy">
+            <div class="num">04</div>
+            <h2 data-fr="Sept-Îles a adopté Tahanan." data-en="Sept-Îles embraced Tahanan.">Sept-Îles a adopté Tahanan.</h2>
+            <p data-fr="La clientèle de Tahanan est largement locale. Un été, Christopher a même accueilli un groupe d’environ 300 motocyclistes, organisés en plusieurs vagues pour pouvoir bien servir tout le monde."
+               data-en="Tahanan’s customer base is largely local. One summer, Christopher even welcomed a group of around 300 bikers, organized in several waves so everyone could be properly served.">
+              La clientèle de Tahanan est largement locale. Un été, Christopher a même accueilli un groupe d’environ 300 motocyclistes, organisés en plusieurs vagues pour pouvoir bien servir tout le monde.
+            </p>
+            <p data-fr="Pour Christopher, c’est aussi ça Tahanan : donner à sa communauté une nouvelle option et lui faire découvrir une cuisine qu’elle connaît encore peu."
+               data-en="For Christopher, that is also what Tahanan means: giving his community another choice and introducing them to a cuisine many are still discovering.">
+              Pour Christopher, c’est aussi ça Tahanan : donner à sa communauté une nouvelle option et lui faire découvrir une cuisine qu’elle connaît encore peu.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="offer-band" id="offers">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker" style="color:#ffb08f" data-fr="Offres Spotlight" data-en="Spotlight offers">Offres Spotlight</div>
+          <h2 data-fr="Viens découvrir Tahanan." data-en="Come discover Tahanan.">Viens découvrir Tahanan.</h2>
+          <p data-fr="Deux raisons de passer chez Christopher du 1er octobre au 31 décembre 2026."
+             data-en="Two reasons to stop by Christopher’s from October 1 through December 31, 2026.">
+            Deux raisons de passer chez Christopher du 1er octobre au 31 décembre 2026.
+          </p>
+        </div>
+
+        <div class="offer-grid">
+          <article class="offer-card">
+            <div class="kicker" data-fr="OFFRE SPOTLIGHT" data-en="SPOTLIGHT OFFER">OFFRE SPOTLIGHT</div>
+            <h3 data-fr="Déjeuner Tahanan" data-en="Tahanan Breakfast">Déjeuner Tahanan</h3>
+            <div><span class="old">$13.99</span><span class="price">$9.99</span></div>
+            <span class="save" data-fr="Économisez 4 $" data-en="Save $4">Économisez 4 $</span>
+            <p data-fr="Combo déjeuner Tahanan à prix spécial Spotlight." data-en="Tahanan breakfast combo at a special Spotlight price.">Combo déjeuner Tahanan à prix spécial Spotlight.</p>
+            <div class="placeholder" style="min-height:190px;box-shadow:none;margin-top:14px">PHOTO OFFER — PLACEHOLDER</div>
+          </article>
+
+          <article class="offer-card">
+            <div class="kicker" data-fr="MEMBERSHIP VIP" data-en="VIP MEMBERSHIP">MEMBERSHIP VIP</div>
+            <h3 data-fr="Café gratuit pendant un an" data-en="Free coffee for one year">Café gratuit pendant un an</h3>
+            <div><span class="price">$9.99</span> <strong data-fr="/ année" data-en="/ year">/ année</strong></div>
+            <p data-fr="Deviens membre VIP Tahanan pour 9,99 $ par année et profite du café gratuit pendant un an."
+               data-en="Become a Tahanan VIP member for $9.99 per year and enjoy free coffee for one year.">
+              Deviens membre VIP Tahanan pour 9,99 $ par année et profite du café gratuit pendant un an.
+            </p>
+            <div class="placeholder" style="min-height:190px;box-shadow:none;margin-top:14px">VIP / COFFEE PHOTO — PLACEHOLDER</div>
+          </article>
+        </div>
+
+        <div class="location-card">
+          <strong>Tahanan — Sept-Îles</strong><br/>
+          <span data-fr="Adresse : PLACEHOLDER" data-en="Address: PLACEHOLDER">Adresse : PLACEHOLDER</span><br/>
+          <span data-fr="Aucune condition particulière. Offre Spotlight du 1er octobre au 31 décembre 2026."
+                data-en="No special conditions. Spotlight offer runs October 1 through December 31, 2026.">
+            Aucune condition particulière. Offre Spotlight du 1er octobre au 31 décembre 2026.
+          </span>
+        </div>
+
+        <div class="unlock">
+          <button class="btn btn-primary" onclick="openOffers()" data-fr="🔓 Débloquer l’offre" data-en="🔓 Unlock the offer">🔓 Débloquer l’offre</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="teaser">
+      <div class="wrap">
+        <div class="box">
+          <div class="kicker" data-fr="Et après?" data-en="What’s next?">Et après?</div>
+          <h2 data-fr="Une maison qui continue de grandir." data-en="A home that keeps growing.">Une maison qui continue de grandir.</h2>
+          <p class="lead" style="margin:0 auto" data-fr="Peut-être un deuxième Tahanan un jour. Montréal? Qui sait… 👀"
+             data-en="Maybe a second Tahanan one day. Montreal? Who knows… 👀">
+            Peut-être un deuxième Tahanan un jour. Montréal? Qui sait… 👀
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <strong>RestoEnLigne</strong><br/>
+      <span data-fr="Des histoires humaines. De belles découvertes près de vous." data-en="Human stories. Great discoveries near you.">
+        Des histoires humaines. De belles découvertes près de vous.
+      </span>
+    </div>
+  </footer>
+
+  <div class="modal" id="offerModal" aria-hidden="true">
+    <div class="modal-card">
+      <button class="close" onclick="closeOffers()" aria-label="Close">×</button>
+      <div class="kicker" data-fr="Votre offre est débloquée" data-en="Your offer is unlocked">Votre offre est débloquée</div>
+      <h2 data-fr="Bienvenue chez Tahanan." data-en="Welcome to Tahanan.">Bienvenue chez Tahanan.</h2>
+      <p data-fr="Montrez cet écran ou dites le Code Spotlight au restaurant."
+         data-en="Show this screen or say the Spotlight Code at the restaurant.">
+        Montrez cet écran ou dites le Code Spotlight au restaurant.
+      </p>
+
+      <div class="code-box">
+        <div class="note" data-fr="CODE SPOTLIGHT" data-en="SPOTLIGHT CODE">CODE SPOTLIGHT</div>
+        <div class="code">TBD</div>
+        <div class="note" data-fr="Placeholder — à remplacer lorsque Christopher confirme le code."
+             data-en="Placeholder — replace once Christopher confirms the code.">
+          Placeholder — à remplacer lorsque Christopher confirme le code.
+        </div>
+      </div>
+
+      <div class="offer-grid">
+        <div class="offer-card" style="border:1px solid var(--line)">
+          <h3 data-fr="Déjeuner Tahanan" data-en="Tahanan Breakfast">Déjeuner Tahanan</h3>
+          <div><span class="old">$13.99</span><span class="price">$9.99</span></div>
+        </div>
+        <div class="offer-card" style="border:1px solid var(--line)">
+          <h3 data-fr="Membership VIP" data-en="VIP Membership">Membership VIP</h3>
+          <div><span class="price">$9.99</span> <strong data-fr="/ année" data-en="/ year">/ année</strong></div>
+          <p data-fr="Café gratuit pendant un an." data-en="Free coffee for one year.">Café gratuit pendant un an.</p>
+        </div>
+      </div>
+      <p class="note" style="margin-top:18px" data-fr="Valide du 1er octobre au 31 décembre 2026. Aucune condition particulière."
+         data-en="Valid October 1 through December 31, 2026. No special conditions.">
+        Valide du 1er octobre au 31 décembre 2026. Aucune condition particulière.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    let currentLang = 'fr';
+    function toggleLang(){
+      currentLang = currentLang === 'fr' ? 'en' : 'fr';
+      document.documentElement.lang = currentLang;
+      document.querySelectorAll('[data-fr]').forEach(el=>{
+        el.textContent = el.getAttribute('data-' + currentLang);
+      });
+      document.getElementById('langBtn').textContent = currentLang === 'fr' ? 'EN' : 'FR';
+    }
+    function openOffers(){
+      document.getElementById('offerModal').classList.add('open');
+      document.getElementById('offerModal').setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    }
+    function closeOffers(){
+      document.getElementById('offerModal').classList.remove('open');
+      document.getElementById('offerModal').setAttribute('aria-hidden','true');
+      document.body.style.overflow='';
+    }
+    document.getElementById('offerModal').addEventListener('click', e=>{
+      if(e.target.id==='offerModal') closeOffers();
+    });
+    document.addEventListener('keydown', e=>{
+      if(e.key==='Escape') closeOffers();
+    });
+  </script>
+</body>
+</html>
